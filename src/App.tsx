@@ -118,21 +118,13 @@ export default function App() {
             >
               <RefreshCw className="w-5 h-5" />
             </button>
-            <button
-              id="rotate-btn"
-              onClick={rotate}
-              className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-orange-600 hover:bg-orange-500 active:scale-95 transition-all text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-black uppercase tracking-wider group shadow-2xl shadow-orange-900/40 text-sm md:text-lg border-b-4 border-orange-800 hover:border-orange-700"
-            >
-              <RefreshCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-700 ease-in-out" />
-              <span className="whitespace-nowrap">Xoay Cầu Thủ</span>
-            </button>
           </div>
         </div>
       </header>
 
-      <main className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_320px] lg:grid-cols-[1fr_400px] gap-8 md:gap-12">
+      <main className="w-full max-w-4xl flex flex-col items-center gap-8 md:gap-12">
         {/* Court Section */}
-        <div className="relative aspect-[4/3] bg-zinc-900 rounded-[2.5rem] border-2 border-zinc-800 p-3 sm:p-8 shadow-[0_0_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden flex flex-col group/court transition-all duration-700 hover:border-zinc-700">
+        <div className="w-full relative aspect-[4/3] bg-zinc-900 rounded-[2.5rem] border-2 border-zinc-800 p-3 sm:p-8 shadow-[0_0_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden flex flex-col group/court transition-all duration-700 hover:border-zinc-700">
           {/* Court markings */}
           <div className="absolute inset-x-6 sm:inset-x-12 inset-y-10 sm:inset-y-16 border-2 border-zinc-700/20 rounded-sm pointer-events-none transition-colors group-hover/court:border-zinc-700/40">
             <div className="absolute top-1/2 left-0 right-0 border-t-[4px] border-zinc-600/30 border-dashed" />
@@ -162,16 +154,17 @@ export default function App() {
               ))}
             </div>
           </div>
-          
-          <div className="absolute bottom-6 right-10 text-[10px] md:text-xs font-mono text-zinc-700 uppercase tracking-[0.4em] font-black opacity-50">
-            Standard 6x6 Grid Layout
-          </div>
-        </div>        
+        </div>
+
+        <button
+          id="rotate-btn"
+          onClick={rotate}
+          className="w-full sm:w-auto flex items-center justify-center gap-4 bg-orange-600 hover:bg-orange-500 active:scale-95 transition-all text-white px-12 md:px-20 py-5 md:py-6 rounded-2xl font-black uppercase tracking-widest group shadow-2xl shadow-orange-900/40 text-base md:text-xl border-b-4 border-orange-800 hover:border-orange-700"
+        >
+          <RefreshCw className="w-6 h-6 group-hover:rotate-180 transition-transform duration-700 ease-in-out" />
+          <span className="whitespace-nowrap">Xoay Cầu Thủ</span>
+        </button>
       </main>
-      
-      <footer className="mt-16 text-zinc-700 font-mono text-[10px] uppercase tracking-[0.5em] font-black opacity-30">
-        Professional Sports Tools Division &copy; 2024
-      </footer>
     </div>
   );
 }
@@ -181,38 +174,38 @@ function PositionCard({ pos, player, onUpdate }: { pos: number, player: Player, 
     <motion.div
       layout
       transition={{ type: 'spring', damping: 25, stiffness: 180 }}
-      className="bg-zinc-800/90 backdrop-blur-lg border-2 border-zinc-700/50 rounded-[2rem] p-3 sm:p-6 flex flex-col justify-between hover:bg-zinc-800 hover:border-orange-500/60 transition-all shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] relative group overflow-hidden"
+      className="bg-zinc-800/90 backdrop-blur-lg border-2 border-zinc-700/50 rounded-2xl sm:rounded-[2rem] p-2.5 sm:p-6 flex flex-col hover:bg-zinc-800 hover:border-orange-500/60 transition-all shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] relative group overflow-hidden h-full"
     >
-      <div className="absolute top-3 right-3 sm:top-5 sm:right-5 w-7 h-7 sm:w-12 sm:h-12 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center text-[10px] sm:text-lg font-black shadow-2xl z-20 text-zinc-500 group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-500 transition-all group-hover:scale-110 group-hover:-rotate-6">
+      <div className="absolute top-2 right-2 sm:top-5 sm:right-5 w-6 h-6 sm:w-12 sm:h-12 rounded-lg sm:rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center text-[10px] sm:text-lg font-black shadow-2xl z-20 text-zinc-500 group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-500 transition-all group-hover:scale-110 group-hover:-rotate-6">
         {pos}
       </div>
       
-      <div className="mt-2 sm:mt-0 mb-3 sm:mb-6">
-        <label className="text-[9px] sm:text-xs uppercase font-black text-zinc-500 mb-1.5 block tracking-widest transition-colors group-hover:text-orange-500/60">Cầu thủ</label>
+      {/* Name section - Centered vertically and horizontally */}
+      <div className="flex-1 flex flex-col justify-center items-center -mt-2 sm:-mt-4">
         <input
           type="text"
           value={player.name}
           onChange={(e) => onUpdate('name', e.target.value)}
-          className="w-full bg-transparent border-b-2 border-transparent focus:border-orange-500 focus:outline-none text-sm sm:text-2xl font-black text-white placeholder:text-zinc-700 truncate transition-all py-1.5"
+          className="w-full bg-transparent border-b-2 border-transparent focus:border-orange-500 focus:outline-none text-xs sm:text-2xl font-black text-white placeholder:text-zinc-700 truncate transition-all py-1 text-center"
           placeholder="Tên..."
         />
       </div>
 
-      <div className="flex items-end justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <label className="text-[9px] sm:text-xs uppercase font-black text-zinc-500 mb-1.5 block tracking-widest transition-colors group-hover:text-orange-500/60">Số áo</label>
-          <div className="flex items-center gap-2">
+      {/* Number section - At the bottom */}
+      <div className="flex items-center sm:items-end justify-center sm:justify-between gap-2 sm:gap-3">
+        <div className="min-w-0">
+          <label className="hidden sm:block text-[9px] sm:text-xs uppercase font-black text-zinc-500 mb-1.5 tracking-widest transition-colors group-hover:text-orange-500/60 text-center sm:text-left">Số áo</label>
+          <div className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2">
             <Hash className="w-3 h-3 sm:w-5 sm:h-5 text-zinc-600 shrink-0 group-hover:text-orange-500 transition-colors" />
             <input
               type="text"
               value={player.number}
               onChange={(e) => onUpdate('number', e.target.value)}
-              className="w-full bg-transparent border-b-2 border-transparent focus:border-orange-500 focus:outline-none text-lg sm:text-3xl font-mono font-black text-white"
+              className="w-12 sm:w-full bg-transparent border-b-2 border-transparent focus:border-orange-500 focus:outline-none text-base sm:text-3xl font-mono font-black text-white p-0 text-center sm:text-left"
               placeholder="00"
             />
           </div>
         </div>
-        
       </div>
     </motion.div>
   );
