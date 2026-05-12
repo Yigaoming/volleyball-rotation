@@ -1,0 +1,6 @@
+{
+  "name": "Volleyball Rotation Tool",
+  "description": "A simple tool to track volleyball rotations, manage player names and numbers, and rotate through positions clockwise.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
